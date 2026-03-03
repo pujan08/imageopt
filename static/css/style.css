@@ -1,0 +1,819 @@
+/* =====================================================================
+   ImageOpt – main stylesheet
+   ===================================================================== */
+
+/* --------------------------------------------------------------------- */
+/* 1. CSS variables / reset                                               */
+/* --------------------------------------------------------------------- */
+:root {
+  --bg:           #0d0f18;
+  --surface:      #161929;
+  --surface-2:    #1e2236;
+  --surface-3:    #252840;
+  --border:       #2c3050;
+  --border-focus: #6366f1;
+  --accent:       #6366f1;
+  --accent-hover: #818cf8;
+  --accent-dim:   rgba(99, 102, 241, 0.15);
+  --text:         #e2e8f0;
+  --text-muted:   #8892aa;
+  --text-dim:     #525c78;
+  --success:      #22c55e;
+  --success-dim:  rgba(34, 197, 94, 0.12);
+  --error:        #f43f5e;
+  --error-dim:    rgba(244, 63, 94, 0.12);
+  --warning:      #f59e0b;
+  --radius-sm:    6px;
+  --radius:       12px;
+  --radius-lg:    18px;
+  --shadow:       0 8px 32px rgba(0, 0, 0, 0.45);
+  --transition:   0.18s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------- */
+/* 2. Utilities                                                           */
+/* --------------------------------------------------------------------- */
+.hidden { display: none !important; }
+
+/* --------------------------------------------------------------------- */
+/* 3. Header                                                              */
+/* --------------------------------------------------------------------- */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.logo svg { flex-shrink: 0; }
+
+.tagline {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------- */
+/* 4. Main layout                                                         */
+/* --------------------------------------------------------------------- */
+main {
+  flex: 1;
+  padding: 2rem 1.5rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --------------------------------------------------------------------- */
+/* 5. Card                                                                */
+/* --------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* --------------------------------------------------------------------- */
+/* 6. Controls panel                                                      */
+/* --------------------------------------------------------------------- */
+.controls-panel {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+
+.ctrl-sliders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Preset pills */
+.preset-pills {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.preset-pill {
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.preset-pill:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.preset-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.preset-desc {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Slider groups */
+.ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ctrl-group label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.ctrl-group label strong {
+  color: var(--text);
+  font-weight: 600;
+  min-width: 2.2rem;
+  display: inline-block;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-3);
+  outline: none;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--accent-hover);
+  transform: scale(1.15);
+}
+
+input[type="range"]:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ctrl-note {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Toggle switch */
+.toggle-lbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-lbl input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-sw {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  background: var(--surface-3);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.toggle-sw::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.toggle-lbl input:checked + .toggle-sw {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.toggle-lbl input:checked + .toggle-sw::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.auto-orient-badge {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+}
+
+/* Param summary */
+.param-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.ps-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.55rem;
+  color: var(--text-muted);
+}
+
+.ps-preset {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+/* --------------------------------------------------------------------- */
+/* 7. Image panes                                                         */
+/* --------------------------------------------------------------------- */
+.panes {
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  min-height: 380px;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.pane-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.pane-size {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pane-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------- */
+/* 8. Drop zone                                                           */
+/* --------------------------------------------------------------------- */
+.drop-zone {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.drop-zone.drag-hover .drop-idle-icon svg {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.drop-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  padding: 1.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.drop-idle-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--surface-3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.drop-idle-icon svg {
+  transition: transform 0.25s ease;
+}
+
+.drop-idle p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.drop-idle .hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+/* Browse button inside drop zone */
+.btn-browse {
+  pointer-events: all;
+  display: inline-block;
+  padding: 0.45rem 1.1rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  margin-top: 0.15rem;
+}
+
+.btn-browse:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------- */
+/* 9. Image previews                                                      */
+/* --------------------------------------------------------------------- */
+.preview-img {
+  max-width: 100%;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+/* --------------------------------------------------------------------- */
+/* 10. After / placeholder states                                         */
+/* --------------------------------------------------------------------- */
+.after-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-dim);
+  width: 100%;
+  min-height: 300px;
+  justify-content: center;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.after-placeholder svg { opacity: 0.35; }
+
+.after-placeholder p {
+  font-size: 0.88rem;
+  max-width: 180px;
+}
+
+/* --------------------------------------------------------------------- */
+/* 11. Loading spinner                                                    */
+/* --------------------------------------------------------------------- */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  min-height: 300px;
+  justify-content: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------- */
+/* 12. Pane divider arrow                                                 */
+/* --------------------------------------------------------------------- */
+.pane-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+/* --------------------------------------------------------------------- */
+/* 13. Stats bar                                                          */
+/* --------------------------------------------------------------------- */
+.stats-bar {
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-dim);
+}
+
+.stat-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-savings .stat-value {
+  font-size: 1.05rem;
+}
+
+.savings-positive { color: var(--success) !important; }
+.savings-zero     { color: var(--warning) !important; }
+
+.stats-bar .spacer { flex: 1; }
+
+/* --------------------------------------------------------------------- */
+/* 14. Buttons                                                            */
+/* --------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------- */
+/* 15. Error / info banners                                               */
+/* --------------------------------------------------------------------- */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.alert-error {
+  background: var(--error-dim);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+.alert-error svg { flex-shrink: 0; margin-top: 1px; }
+
+.alerts-area {
+  padding: 0 1.25rem 1rem;
+}
+
+/* --------------------------------------------------------------------- */
+/* 16. Reset / new upload button                                          */
+/* --------------------------------------------------------------------- */
+.reset-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------- */
+/* 17. Footer                                                             */
+/* --------------------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+}
+
+/* --------------------------------------------------------------------- */
+/* 18. Responsive                                                         */
+/* --------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .panes {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 36px auto;
+  }
+
+  .pane-divider {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.35rem 0;
+    flex-direction: row;
+  }
+
+  .pane-divider svg { transform: rotate(90deg); }
+
+  .tagline { display: none; }
+}
+
+@media (max-width: 600px) {
+  .ctrl-sliders {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* 19. Format pills                                                        */
+/* --------------------------------------------------------------------- */
+.format-pills {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.format-pill {
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.format-pill:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.format-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------- */
+/* 20. Misc controls                                                       */
+/* --------------------------------------------------------------------- */
+.ctrl-row-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.85rem;
+  font-size: 0.78rem;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.crop-active-badge {
+  font-size: 0.78rem;
+  color: var(--accent-hover);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.crop-active-badge button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------- */
+/* 21. Crop modal                                                          */
+/* --------------------------------------------------------------------- */
+.crop-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crop-modal-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  width: min(92vw, 860px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.crop-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.crop-modal-body {
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.crop-modal-body img {
+  display: block;
+  max-width: 100%;
+}
+
+.crop-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--border);
+}

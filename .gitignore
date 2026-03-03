@@ -1,8 +1,30 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-.pytest_cache/
-.venv/
+*.pyd
+.Python
 *.egg-info/
 dist/
 build/
+.eggs/
+.venv/
+venv/
+env/
+
+# App temp uploads
+temp_uploads/*
+!temp_uploads/.gitkeep
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
