@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImageOpt — Image Optimizer</title>
+  <style>
+    :root {
+      --bg:      #0d0f18;
+      --surface: #161929;
+      --border:  #2c3050;
+      --accent:  #6366f1;
+      --accent-h:#818cf8;
+      --text:    #e2e8f0;
+      --muted:   #8892aa;
+      --dim:     #525c78;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+    }
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: #1e2236;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      color: var(--muted);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.18s;
+    }
+    .btn:hover {
+      background: var(--accent-h);
+      transform: translateY(-2px);
+    }
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.78rem;
+      color: var(--dim);
+    }
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect width="26" height="26" rx="7" fill="#6366f1"/>
+      <path d="M13 5v3M13 18v3M5 13H8M18 13h3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="13" cy="13" r="4" stroke="#fff" stroke-width="1.8"/>
+    </svg>
+    ImageOpt
+  </div>
+
+  <p class="tagline">
+    A free, browser-based image optimizer. Compress, resize, crop, adjust, and convert JPEG, PNG, and WebP images — no signup required.
+  </p>
+
+  <div class="features">
+    <span class="badge">Compression</span>
+    <span class="badge">Resize</span>
+    <span class="badge">Crop</span>
+    <span class="badge">Format Conversion</span>
+    <span class="badge">Brightness &amp; Contrast</span>
+    <span class="badge">Sharpness &amp; Blur</span>
+    <span class="badge">Strip EXIF</span>
+    <span class="badge">Up to 25 MB</span>
+    <span class="badge">JPEG · PNG · WebP</span>
+  </div>
+
+  <a class="btn" href="https://YOUR-APP.onrender.com" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M9 2h5v5M14 2 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Launch App
+  </a>
+
+  <p class="note">Hosted on Render &mdash; free tier may take ~30s to wake on first visit.</p>
+
+  <footer>
+    Open source &mdash; <a href="https://github.com/pujan08/imageopt" style="color:var(--accent-h);text-decoration:none;">github.com/pujan08/imageopt</a>
+  </footer>
+
+</body>
+</html>
