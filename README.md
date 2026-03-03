@@ -97,9 +97,30 @@ Open your browser and go to **http://127.0.0.1:5000**
 metar-reader/
 ├── app.py               # Flask app — METAR parser, decoder, and API routes
 ├── requirements.txt     # Python dependencies
-└── templates/
-    └── index.html       # Single-page frontend (HTML + CSS + JS)
+├── templates/
+│   └── index.html       # Single-page frontend (HTML + CSS + JS)
+└── tests/
+    ├── test_helpers.py  # Unit tests for helper and decoder functions
+    ├── test_decoder.py  # decode_metar() tests with mock METAR strings
+    └── test_routes.py   # Flask API route tests with mocked HTTP calls
 ```
+
+---
+
+## Testing
+
+The project includes **105 unit tests** written with `unittest.TestCase` and run via `pytest`.
+
+```bash
+# Run all tests
+py -m pytest tests/ -v
+```
+
+| File | Tests | Coverage |
+|---|---|---|
+| `test_helpers.py` | 38 | Helper functions: compass, temperature, wind speed, weather codes, sky conditions |
+| `test_decoder.py` | 43 | `decode_metar()` with 9 mock METAR scenarios (thunderstorms, fog, freezing temps, gusts, etc.) |
+| `test_routes.py` | 24 | `/api/weather` endpoint — success, validation errors, timeouts, connection failures |
 
 ---
 
